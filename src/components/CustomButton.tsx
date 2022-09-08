@@ -25,7 +25,7 @@ const CustomButton = props => {
 
 const styles = StyleSheet.create({
   screen: {
-    height: getScreenHeight(4),
+    height: getScreenHeight(5),
     backgroundColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',

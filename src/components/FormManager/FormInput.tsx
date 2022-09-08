@@ -6,10 +6,11 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
-import {getScreenHeight} from '../utils/domUtils';
+import {getScreenHeight} from '../../utils/domUtils';
 
-const FormInput = props => {
+const FormInput = (props: any) => {
   const {placeholder, label, error} = props;
   const [secure, setSecure] = useState(true);
   return (
@@ -55,7 +56,7 @@ const FormInput = props => {
 
 const styles = StyleSheet.create({
   textInput: {
-    height: getScreenHeight(4),
+    height: Platform.OS === 'android' ? getScreenHeight(6) : getScreenHeight(4),
     borderColor: 'grey',
     borderWidth: getScreenHeight(0.1),
     borderRadius: getScreenHeight(1),

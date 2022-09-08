@@ -3,11 +3,11 @@ import {View, StyleSheet} from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 
-import CustomButton from './CustomButton';
+import CustomButton from '../CustomButton';
 import FormInput from './FormInput';
-import {getScreenHeight} from '../utils/domUtils';
+import {getScreenHeight} from '../../utils/domUtils';
 
-const FormManager = props => {
+const FormManager = (props: any) => {
   const [userInfo, setUserInfo] = useState({});
   const [validationSchema, setValidationSchema] = useState(Yup.object({}));
 
@@ -57,7 +57,7 @@ const FormManager = props => {
       }) => {
         return (
           <View>
-            {props.fields.map((item, index) => {
+            {props.fields.map((item: any, index: any) => {
               return (
                 <View key={index} style={styles.textInput}>
                   <FormInput

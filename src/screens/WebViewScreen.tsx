@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useEffect} from 'react';
 import {View, StyleSheet, ActivityIndicator, Alert} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {WebView} from 'react-native-webview';
@@ -14,6 +15,17 @@ const WebViewScreen = (props: any) => {
   //     );
   //   }
 
+  useEffect(() => {
+    timer();
+  }, []);
+
+  const timer = () => {
+    setTimeout(() => {
+      props.navigation.goBack();
+      Alert.alert('payment Timeout please retry!');
+    }, 60);
+  };
+
   return (
     <SafeAreaView style={styles.screen}>
       {loading ? <ActivityIndicator size={'large'} color="red" /> : null}
@@ -21,7 +33,7 @@ const WebViewScreen = (props: any) => {
         incognito={true}
         style={{flex: 1}}
         source={{
-          uri: 'https://secure.3gdirectpay.com/dpopayment.php?ID=D7D652ED-2EB0-4AD1-8EF3-1F9FCE675277',
+          uri: 'https://secure.3gdirectpay.com/dpopayment.php?ID=FDA9131C-A281-4D59-8BF6-7A166D024C53',
         }}
         onMessage={async m => {
           try {

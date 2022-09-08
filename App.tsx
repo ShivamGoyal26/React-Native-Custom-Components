@@ -1,12 +1,12 @@
 import React from 'react';
 import {SafeAreaView, View, Text, StyleSheet} from 'react-native';
-import FormManager from './src/components/FormManager';
 import * as Yup from 'yup';
 
 import {getScreenHeight} from './src/utils/domUtils';
 import Strings from './src/constants/Strings';
 import {phoneRegExp} from './src/constants/Regex';
 import Images from './src/constants/Images';
+import FormManager from './src/components/FormManager';
 
 const App = () => {
   let fields = [
