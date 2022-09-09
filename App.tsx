@@ -1,5 +1,11 @@
 import React from 'react';
-import {SafeAreaView, View, Text, StyleSheet} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import * as Yup from 'yup';
 
 import {getScreenHeight} from './src/utils/domUtils';
@@ -7,19 +13,20 @@ import Strings from './src/constants/Strings';
 import {phoneRegExp} from './src/constants/Regex';
 import Images from './src/constants/Images';
 import FormManager from './src/components/FormManager';
+import CustomButton from './src/components/CustomButton';
 
 const App = () => {
   let fields = [
-    {
-      fieldName: Strings.name.fieldName,
-      label: Strings.name.label,
-      placeholder: Strings.name.placeholder,
-      errorMessage: Strings.name.errorMessage,
-      keyboardType: 'default',
-      validation: Yup.string().trim().min(3, Strings.name.errorMessage),
-      icon: Images.user,
-      leftIcon: Images.user,
-    },
+    // {
+    //   fieldName: Strings.name.fieldName,
+    //   label: Strings.name.label,
+    //   placeholder: Strings.name.placeholder,
+    //   errorMessage: Strings.name.errorMessage,
+    //   keyboardType: 'default',
+    //   validation: Yup.string().trim().min(3, Strings.name.errorMessage),
+    //   icon: Images.user,
+    //   leftIcon: Images.user,
+    // },
     {
       fieldName: Strings.email.fieldName,
       label: Strings.email.label,
@@ -47,50 +54,55 @@ const App = () => {
         .min(8, Strings.password.errorMessage)
         .required(Strings.password.required),
     },
-    {
-      fieldName: Strings.confirmPassword.fieldName,
-      label: Strings.confirmPassword.label,
-      placeholder: Strings.confirmPassword.placeholder,
-      errorMessage: Strings.confirmPassword.errorMessage,
-      icon: Images.lock,
-      leftIcon: Images.lock,
-      anotherIcon: Images.unlock,
-      keyboardType: 'default',
-      validation: Yup.string()
-        .required()
-        .oneOf(
-          [Yup.ref(Strings.password.fieldName)],
-          Strings.confirmPassword.errorMessage,
-        ),
-    },
-    {
-      fieldName: Strings.phone.fieldName,
-      label: Strings.phone.label,
-      placeholder: Strings.phone.placeholder,
-      errorMessage: Strings.phone.errorMessage,
-      icon: Images.phone,
-      leftIcon: Images.phone,
-      keyboardType: 'numeric',
-      maxLength: 10,
-      validation: Yup.string()
-        .matches(phoneRegExp, Strings.phone.required)
-        .required(Strings.phone.required),
-    },
+    // {
+    //   fieldName: Strings.confirmPassword.fieldName,
+    //   label: Strings.confirmPassword.label,
+    //   placeholder: Strings.confirmPassword.placeholder,
+    //   errorMessage: Strings.confirmPassword.errorMessage,
+    //   icon: Images.lock,
+    //   leftIcon: Images.lock,
+    //   anotherIcon: Images.unlock,
+    //   keyboardType: 'default',
+    //   validation: Yup.string()
+    //     .required()
+    //     .oneOf(
+    //       [Yup.ref(Strings.password.fieldName)],
+    //       Strings.confirmPassword.errorMessage,
+    //     ),
+    // },
+    // {
+    //   fieldName: Strings.phone.fieldName,
+    //   label: Strings.phone.label,
+    //   placeholder: Strings.phone.placeholder,
+    //   errorMessage: Strings.phone.errorMessage,
+    //   icon: Images.phone,
+    //   leftIcon: Images.phone,
+    //   keyboardType: 'numeric',
+    //   maxLength: 10,
+    //   validation: Yup.string()
+    //     .matches(phoneRegExp, Strings.phone.required)
+    //     .required(Strings.phone.required),
+    // },
   ];
   return (
-    <SafeAreaView style={styles.safe}>
-      <View style={styles.screen}>
-        <Text style={{color: 'black', fontSize: 30}}>App js file</Text>
-        <FormManager
-          action={(text, actions) => {
-            console.log('>>>', text);
-          }}
-          fields={fields}
-          buttonTitle="Login"
-        />
-        {/* <CustomRadioButton /> */}
-      </View>
-    </SafeAreaView>
+    <>
+      {/* <ImagePickerModal /> */}
+      <SafeAreaView style={styles.safe}>
+        <View style={styles.screen}>
+          <Text style={{color: 'black', fontSize: 30}}>App js file</Text>
+          <FormManager
+            action={(text: any, actions: any) => {
+              console.log('>>>', text);
+            }}
+            fields={fields}
+            buttonTitle="Login"
+          />
+          <View style={{marginTop: getScreenHeight(3)}}>
+            <CustomButton title="Pick Image" />
+          </View>
+        </View>
+      </SafeAreaView>
+    </>
   );
 };
 
