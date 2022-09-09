@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, View, Text, StyleSheet} from 'react-native';
 import * as Yup from 'yup';
 
@@ -7,8 +7,11 @@ import Strings from './src/constants/Strings';
 import {phoneRegExp} from './src/constants/Regex';
 import Images from './src/constants/Images';
 import FormManager from './src/components/FormManager';
+import ImagePickerModal from './src/components/ImagePicker';
+import CustomButton from './src/components/CustomButton';
 
 const App = () => {
+  const [showModal, setShowModal] = useState(false);
   let fields = [
     {
       fieldName: Strings.name.fieldName,
@@ -78,19 +81,30 @@ const App = () => {
     },
   ];
   return (
-    <SafeAreaView style={styles.safe}>
-      <View style={styles.screen}>
-        <Text style={{color: 'black', fontSize: 30}}>App js file</Text>
-        <FormManager
-          action={(text, actions) => {
-            console.log('>>>', text);
+    <>
+      {showModal ? (
+        <ImagePickerModal
+          cropping={true}
+          result={(text: any) => {
+            console.log(text);
           }}
-          fields={fields}
-          buttonTitle="Login"
+          pressHandler={() => setShowModal(false)}
         />
-        {/* <CustomRadioButton /> */}
-      </View>
-    </SafeAreaView>
+      ) : null}
+      <SafeAreaView style={styles.safe}>
+        <View style={styles.screen}>
+          <Text style={{color: 'black', fontSize: 30}}>App js file</Text>
+          <FormManager
+            action={(text: any, actions: any) => {
+              console.log('>>>', text);
+            }}
+            fields={fields}
+            buttonTitle="Login"
+          />
+          <CustomButton title="Pick Image" action={() => setShowModal(true)} />
+        </View>
+      </SafeAreaView>
+    </>
   );
 };
 

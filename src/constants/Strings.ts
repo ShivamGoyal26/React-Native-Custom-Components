@@ -40,4 +40,11 @@ export default {
     password: 'password',
     phone: 'phone',
   },
+  permissions: {
+    title: 'Demo App',
+    message: 'Needs your storage access',
+    ask: 'Ask me later',
+    cancel: 'Cancel',
+    okay: 'Okay',
+  },
 };
