@@ -86,13 +86,17 @@ const ImagePickerModal = (props: any) => {
             </Text>
             {openSettings ? (
               <View>
-                <Text style={{marginBottom: getScreenHeight(3)}}>
+                <Text
+                  style={{marginBottom: getScreenHeight(3), color: 'black'}}>
                   You have denied the permission please go to settings and gave
                   permission
                 </Text>
                 <View style={styles.row}>
-                  <Text onPress={props.pressHandler}>Okay</Text>
+                  <Text style={{color: 'black'}} onPress={props.pressHandler}>
+                    Okay
+                  </Text>
                   <Text
+                    style={{color: 'black'}}
                     onPress={() => {
                       props.pressHandler();
                       Linking.openSettings();

@@ -1,5 +1,7 @@
 import {Alert, PermissionsAndroid, Platform} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
+import {request, PERMISSIONS} from 'react-native-permissions';
+
 import Strings from '../../constants/Strings';
 
 export const openGalleryImage = async (
@@ -10,6 +12,13 @@ export const openGalleryImage = async (
   action: any,
 ) => {
   try {
+    // request(
+    //   Platform.OS === 'ios'
+    //     ? PERMISSIONS.IOS.PHOTO_LIBRARY
+    //     : PERMISSIONS.ANDROID.READ_MEDIA_IMAGES,
+    // ).then(result => {
+    //   console.log('>>', result);
+    // });
     const granted = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
       {
@@ -74,6 +83,13 @@ export const openCameraImage = async (
         buttonPositive: Strings.permissions.okay,
       },
     );
+    // request(
+    //   Platform.OS === 'ios'
+    //     ? PERMISSIONS.IOS.CAMERA
+    //     : PERMISSIONS.ANDROID.CAMERA,
+    // ).then(result => {
+    //   console.log(result);
+    // });
     if (Platform.OS !== 'ios') {
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         const res = await ImagePicker.openCamera({
